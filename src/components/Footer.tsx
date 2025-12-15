@@ -91,24 +91,24 @@ const Footer = () => {
             <h4 className="text-display text-lg mb-4">LEGAL</h4>
             <ul className="space-y-2">
               <li>
-                <a href="#" className="text-muted-foreground hover:text-foreground transition-colors">
+                <Link to="/privacidad" className="text-muted-foreground hover:text-foreground transition-colors">
                   Política de Privacidad
-                </a>
+                </Link>
               </li>
               <li>
-                <a href="#" className="text-muted-foreground hover:text-foreground transition-colors">
+                <Link to="/terminos" className="text-muted-foreground hover:text-foreground transition-colors">
                   Términos y Condiciones
-                </a>
+                </Link>
               </li>
               <li>
-                <a href="#" className="text-muted-foreground hover:text-foreground transition-colors">
+                <Link to="/cookies" className="text-muted-foreground hover:text-foreground transition-colors">
                   Política de Cookies
-                </a>
+                </Link>
               </li>
               <li>
-                <a href="#" className="text-muted-foreground hover:text-foreground transition-colors">
+                <Link to="/devoluciones" className="text-muted-foreground hover:text-foreground transition-colors">
                   Devoluciones
-                </a>
+                </Link>
               </li>
             </ul>
           </div>
