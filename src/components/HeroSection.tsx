@@ -35,7 +35,7 @@ const HeroSection = () => {
             transition={{ duration: 0.8, delay: 0.2, ease: "easeOut" }}
             className="text-lg sm:text-xl md:text-2xl text-muted-foreground font-body mb-12 max-w-2xl mx-auto"
           >
-            Burgers de noche. Brunch de día. No te quedes sin excusas.
+            Cocina non-stop. Burgers gourmet y brunch todo el día.
           </motion.p>
 
           <motion.div
