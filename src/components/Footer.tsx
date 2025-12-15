@@ -27,9 +27,9 @@ const Footer = () => {
             </p>
             <div className="flex gap-4">
               <a
-                href="https://www.instagram.com/Sorrybut_sp"
+                href="https://www.instagram.com/Sorrybut_sp/"
                 target="_blank"
-                rel="noopener noreferrer"
+                rel="noopener noreferrer nofollow"
                 className="text-muted-foreground hover:text-primary transition-colors"
                 aria-label="Instagram"
               >
@@ -38,7 +38,7 @@ const Footer = () => {
               <a
                 href="https://www.tiktok.com/@Sorrybut_sp0"
                 target="_blank"
-                rel="noopener noreferrer"
+                rel="noopener noreferrer nofollow"
                 className="text-muted-foreground hover:text-primary transition-colors"
                 aria-label="TikTok"
               >
