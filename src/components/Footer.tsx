@@ -1,5 +1,6 @@
 import { Instagram, MapPin, Phone, Mail } from "lucide-react";
 import { Link } from "react-router-dom";
+import logo from "@/assets/logo.png";
 
 const Footer = () => {
   return (
@@ -21,7 +22,10 @@ const Footer = () => {
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8 md:gap-12">
           {/* Brand */}
           <div className="lg:col-span-1">
-            <h3 className="text-display text-3xl mb-4">SORRYBUT</h3>
+            <div className="flex items-center gap-3 mb-4">
+              <img src={logo} alt="SORRYBUT" className="h-10 w-auto" />
+              <h3 className="text-display text-3xl">SORRYBUT</h3>
+            </div>
             <p className="text-muted-foreground text-sm mb-6">
               Burgers. Brunch. Merch. Sin excusas.
             </p>
@@ -138,7 +142,7 @@ const Footer = () => {
       <div className="border-t border-border py-6">
         <div className="container mx-auto px-4 text-center">
           <p className="text-muted-foreground text-sm">
-            © 2024 SORRYBUT. Todos los derechos reservados. No hay excusas.
+            © 2025 SORRYBUT. Todos los derechos reservados. No hay excusas.
           </p>
         </div>
       </div>
