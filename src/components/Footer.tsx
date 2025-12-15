@@ -116,11 +116,11 @@ const Footer = () => {
             <ul className="space-y-3">
               <li className="flex items-center gap-2 text-muted-foreground">
                 <MapPin size={18} />
-                <span className="text-sm">Calle Imaginaria 42, Madrid</span>
+                <span className="text-sm">Avenida Montero Ríos nº 18, 36201 Vigo</span>
               </li>
               <li className="flex items-center gap-2 text-muted-foreground">
                 <Phone size={18} />
-                <span className="text-sm">+34 912 345 678</span>
+                <span className="text-sm">986 40 76 45</span>
               </li>
               <li className="flex items-center gap-2 text-muted-foreground">
                 <Mail size={18} />
