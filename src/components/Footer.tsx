@@ -22,10 +22,7 @@ const Footer = () => {
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8 md:gap-12">
           {/* Brand */}
           <div className="lg:col-span-1">
-            <div className="flex items-center gap-3 mb-4">
-              <img src={logo} alt="SORRYBUT" className="h-10 w-auto" />
-              <h3 className="text-display text-3xl">SORRYBUT</h3>
-            </div>
+            <img src={logo} alt="SORRYBUT" className="h-12 w-auto mb-4" />
             <p className="text-muted-foreground text-sm mb-6">
               Burgers. Brunch. Merch. Sin excusas.
             </p>
