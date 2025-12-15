@@ -2,6 +2,7 @@ import { useState } from "react";
 import { Link, useLocation } from "react-router-dom";
 import { ShoppingBag, Menu, X } from "lucide-react";
 import { motion, AnimatePresence } from "framer-motion";
+import logo from "@/assets/logo.png";
 
 const navLinks = [
   { name: "FOOD", href: "/menu" },
@@ -19,8 +20,8 @@ const Navbar = () => {
       <div className="container mx-auto px-4">
         <div className="flex items-center justify-between h-16 md:h-20">
           {/* Logo */}
-          <Link to="/" className="text-display text-2xl md:text-3xl tracking-tighter">
-            SORRYBUT
+          <Link to="/">
+            <img src={logo} alt="Sorrybut" className="h-8 md:h-10 w-auto" />
           </Link>
 
           {/* Desktop Nav */}
