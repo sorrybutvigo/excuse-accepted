@@ -172,34 +172,29 @@ const Shop = () => {
             >
               Merch que grita más que tú después de comer.
             </motion.p>
-
-            {/* Filters */}
-            <div className="flex flex-wrap justify-center gap-3">
-              {types.map((type) => (
-                <button
-                  key={type}
-                  onClick={() => setFilter(type)}
-                  className={`px-4 py-2 text-sm font-display transition-all ${
-                    filter === type
-                      ? "bg-foreground text-background"
-                      : "bg-transparent border border-border text-muted-foreground hover:border-foreground hover:text-foreground"
-                  }`}
-                >
-                  {type}
-                </button>
-              ))}
-            </div>
           </div>
         </section>
 
-        {/* Products Grid */}
+        {/* Coming Soon */}
         <section className="pb-20 md:pb-32">
           <div className="container mx-auto px-4">
-            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 md:gap-8">
-              {filteredProducts.map((product, index) => (
-                <ProductCard key={product.id} product={product} index={index} />
-              ))}
-            </div>
+            <motion.div
+              initial={{ opacity: 0, scale: 0.95 }}
+              animate={{ opacity: 1, scale: 1 }}
+              transition={{ delay: 0.3 }}
+              className="max-w-2xl mx-auto text-center p-12 border-2 border-dashed border-border"
+            >
+              <div className="text-6xl mb-6">🚧</div>
+              <h2 className="text-display text-3xl md:text-4xl mb-4">
+                PRÓXIMAMENTE
+              </h2>
+              <p className="text-muted-foreground text-lg mb-6">
+                Estamos preparando algo grande. Nuestra tienda online estará disponible muy pronto con merch exclusivo que no podrás dejar escapar.
+              </p>
+              <p className="text-sm text-muted-foreground">
+                Síguenos en redes para no perderte el lanzamiento.
+              </p>
+            </motion.div>
           </div>
         </section>
       </main>

@@ -124,13 +124,21 @@ const Footer = () => {
               </li>
               <li className="flex items-center gap-2 text-muted-foreground">
                 <Phone size={18} />
-                <span className="text-sm">986 40 76 45</span>
+                <span className="text-sm">694 21 41 40</span>
               </li>
               <li className="flex items-center gap-2 text-muted-foreground">
                 <Mail size={18} />
-                <span className="text-sm">hola@sorrybut.es</span>
+                <span className="text-sm">info@sorrybut.es</span>
               </li>
             </ul>
+            <a
+              href="https://sorrybut.solo.revointouch.works/sorrybut/digital-menu"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="inline-block mt-4 px-4 py-2 bg-primary text-primary-foreground font-display text-sm hover:bg-primary/90 transition-colors"
+            >
+              VER CARTA ONLINE
+            </a>
           </div>
         </div>
       </div>
