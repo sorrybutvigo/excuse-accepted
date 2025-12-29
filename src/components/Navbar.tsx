@@ -1,6 +1,6 @@
 import { useState } from "react";
 import { Link, useLocation } from "react-router-dom";
-import { ShoppingBag, Menu, X } from "lucide-react";
+import { Menu, X } from "lucide-react";
 import { motion, AnimatePresence } from "framer-motion";
 import logo from "@/assets/logo.png";
 
@@ -42,22 +42,13 @@ const Navbar = () => {
             ))}
           </div>
 
-          {/* Cart & Mobile Menu */}
-          <div className="flex items-center gap-4">
-            <button className="relative p-2 hover:text-primary transition-colors">
-              <ShoppingBag size={24} />
-              <span className="absolute -top-1 -right-1 w-5 h-5 bg-secondary text-secondary-foreground text-xs font-bold flex items-center justify-center">
-                0
-              </span>
-            </button>
-
-            <button
-              className="md:hidden p-2"
-              onClick={() => setIsOpen(!isOpen)}
-            >
-              {isOpen ? <X size={24} /> : <Menu size={24} />}
-            </button>
-          </div>
+          {/* Mobile Menu Toggle */}
+          <button
+            className="md:hidden p-2"
+            onClick={() => setIsOpen(!isOpen)}
+          >
+            {isOpen ? <X size={24} /> : <Menu size={24} />}
+          </button>
         </div>
       </div>
 
