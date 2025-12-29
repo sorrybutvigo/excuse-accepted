@@ -8,6 +8,7 @@ const navLinks = [
   { name: "FOOD", href: "/menu" },
   { name: "SHOP", href: "/shop" },
   { name: "EXCUSES", href: "/excuses" },
+  { name: "EXPANSIÓN", href: "/expansion" },
   { name: "RESERVAR", href: "/reservar" },
 ];
 
