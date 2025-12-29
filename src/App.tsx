@@ -13,6 +13,7 @@ import Terminos from "./pages/Terminos";
 import Cookies from "./pages/Cookies";
 import Devoluciones from "./pages/Devoluciones";
 import NotFound from "./pages/NotFound";
+import CookieBanner from "./components/CookieBanner";
 
 const queryClient = new QueryClient();
 
@@ -34,6 +35,7 @@ const App = () => (
           <Route path="/devoluciones" element={<Devoluciones />} />
           <Route path="*" element={<NotFound />} />
         </Routes>
+        <CookieBanner />
       </BrowserRouter>
     </TooltipProvider>
   </QueryClientProvider>
