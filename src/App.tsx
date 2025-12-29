@@ -8,6 +8,7 @@ import Menu from "./pages/Menu";
 import Shop from "./pages/Shop";
 import Excuses from "./pages/Excuses";
 import Reservar from "./pages/Reservar";
+import Expansion from "./pages/Expansion";
 import Privacidad from "./pages/Privacidad";
 import Terminos from "./pages/Terminos";
 import Cookies from "./pages/Cookies";
@@ -29,6 +30,7 @@ const App = () => (
           <Route path="/shop" element={<Shop />} />
           <Route path="/excuses" element={<Excuses />} />
           <Route path="/reservar" element={<Reservar />} />
+          <Route path="/expansion" element={<Expansion />} />
           <Route path="/privacidad" element={<Privacidad />} />
           <Route path="/terminos" element={<Terminos />} />
           <Route path="/cookies" element={<Cookies />} />
