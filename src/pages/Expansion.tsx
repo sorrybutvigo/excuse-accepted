@@ -28,7 +28,7 @@ const reasons = [
 ];
 
 const stats = [
-  { value: "2019", label: "AÑO DE FUNDACIÓN" },
+  { value: "2025", label: "AÑO DE FUNDACIÓN" },
   { value: "1000+", label: "CLIENTES SEMANALES" },
   { value: "95%", label: "SATISFACCIÓN" },
   { value: "100%", label: "COMPROMISO" },
@@ -211,26 +211,26 @@ const Expansion = () => {
 
             <div className="flex flex-col sm:flex-row items-center justify-center gap-6 mb-12">
               <a 
-                href="tel:986407645"
+                href="tel:630981069"
                 className="flex items-center gap-3 text-lg hover:text-secondary transition-colors group"
               >
                 <div className="p-3 border border-current group-hover:bg-secondary group-hover:border-secondary group-hover:text-secondary-foreground transition-all">
                   <Phone className="h-5 w-5" />
                 </div>
-                <span>986 40 76 45</span>
+                <span>630 98 10 69</span>
               </a>
               <a 
-                href="mailto:hola@sorrybut.es?subject=Interés en franquicia SORRYBUT"
+                href="mailto:info@sorrybut.es?subject=Interés en franquicia SORRYBUT"
                 className="flex items-center gap-3 text-lg hover:text-secondary transition-colors group"
               >
                 <div className="p-3 border border-current group-hover:bg-secondary group-hover:border-secondary group-hover:text-secondary-foreground transition-all">
                   <Mail className="h-5 w-5" />
                 </div>
-                <span>hola@sorrybut.es</span>
+                <span>info@sorrybut.es</span>
               </a>
             </div>
 
-            <a href="mailto:hola@sorrybut.es?subject=Interés en franquicia SORRYBUT">
+            <a href="mailto:info@sorrybut.es?subject=Interés en franquicia SORRYBUT">
               <Button 
                 size="lg" 
                 variant="secondary"
