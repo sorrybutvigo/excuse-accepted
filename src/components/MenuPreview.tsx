@@ -2,34 +2,43 @@ import { motion } from "framer-motion";
 import { Link } from "react-router-dom";
 import { ArrowRight } from "lucide-react";
 
-import burgerClasica from "@/assets/burger-clasica.jpg";
-import burgerCheeseBacon from "@/assets/burger-cheese-bacon.jpg";
-import brunchSagrada from "@/assets/brunch-sagrada.jpg";
+import burgerTrufada from "@/assets/burger-trufada.png";
+import burgerBlackGarlic from "@/assets/burger-black-garlic.png";
+import tostaBianca from "@/assets/tosta-bianca.png";
+import tostaBenedict from "@/assets/tosta-benedict.png";
 
 const menuItems = [
   {
     id: 1,
-    name: "LA CLÁSICA",
-    description: "Smash burger doble con queso cheddar fundido",
-    price: "12.50€",
-    image: burgerClasica,
+    name: "TRUFADA",
+    description: "Ternera Gallega Suprema, Queso Monterey Jack, huevo a la plancha, parmesano y salsa de trufa",
+    price: "12,90€",
+    image: burgerTrufada,
     category: "BURGER",
   },
   {
     id: 2,
-    name: "CHEESE BACON",
-    description: "Doble carne, doble queso, bacon crujiente",
-    price: "14.90€",
-    image: burgerCheeseBacon,
+    name: "BLACK GARLIC",
+    description: "Ternera Gallega Suprema, tomate deshidratado, queso havarti, cebolla confitada, salsa ajo negro",
+    price: "12,50€",
+    image: burgerBlackGarlic,
     category: "BURGER",
   },
   {
     id: 3,
-    name: "LA SAGRADA FAMILIA",
-    description: "Huevos benedict con aguacate y hollandaise",
-    price: "16.00€",
-    image: brunchSagrada,
-    category: "BRUNCH",
+    name: "LA BIANCA",
+    description: "Ricotta cremosa, miel cruda, nueces",
+    price: "7,90€",
+    image: tostaBianca,
+    category: "TOSTA",
+  },
+  {
+    id: 4,
+    name: "BENEDICT",
+    description: "Aguacate, huevo poché, rúcula, semillas calabaza, salsa holandesa, pimentón dulce",
+    price: "8,90€",
+    image: tostaBenedict,
+    category: "TOSTA",
   },
 ];
 
@@ -53,7 +62,7 @@ const MenuPreview = () => {
         </motion.div>
 
         {/* Menu Grid */}
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 md:gap-8">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 md:gap-8">
           {menuItems.map((item, index) => (
             <motion.div
               key={item.id}
