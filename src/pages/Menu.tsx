@@ -3,69 +3,42 @@ import { motion, AnimatePresence } from "framer-motion";
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
 
-import burgerClasica from "@/assets/burger-clasica.jpg";
-import burgerCheeseBacon from "@/assets/burger-cheese-bacon.jpg";
-import brunchSagrada from "@/assets/brunch-sagrada.jpg";
+import burgerTrufada from "@/assets/burger-trufada.png";
+import burgerBlackGarlic from "@/assets/burger-black-garlic.png";
+import tostaBianca from "@/assets/tosta-bianca.png";
+import tostaBenedict from "@/assets/tosta-benedict.png";
 
 const menuData = {
   burger: [
     {
       id: 1,
-      name: "LA CLÁSICA",
-      description: "Smash burger doble con queso cheddar fundido, lechuga, tomate y salsa especial",
-      price: "12.50€",
-      image: burgerClasica,
+      name: "TRUFADA",
+      description: "Hamburguesa de Ternera Gallega Suprema, Queso Monterey Jack, huevo a la plancha, parmesano y salsa de trufa",
+      price: "12,90€",
+      image: burgerTrufada,
     },
     {
       id: 2,
-      name: "CHEESE BACON",
-      description: "Doble carne, doble queso, bacon crujiente y cebolla caramelizada",
-      price: "14.90€",
-      image: burgerCheeseBacon,
-    },
-    {
-      id: 3,
-      name: "LA PICANTE",
-      description: "Jalapeños, queso pepper jack, salsa sriracha y guacamole",
-      price: "13.90€",
-      image: burgerClasica,
-    },
-    {
-      id: 4,
-      name: "BBQ SPECIAL",
-      description: "Bacon, aros de cebolla crujiente, queso cheddar y salsa BBQ casera",
-      price: "15.50€",
-      image: burgerCheeseBacon,
+      name: "BLACK GARLIC",
+      description: "Hamburguesa de Ternera Gallega Suprema, tomate deshidratado, queso havarti, cebolla confitada, salsa ajo negro",
+      price: "12,50€",
+      image: burgerBlackGarlic,
     },
   ],
   brunch: [
     {
-      id: 5,
-      name: "LA SAGRADA FAMILIA",
-      description: "Huevos benedict con aguacate, salmón ahumado y salsa holandesa",
-      price: "16.00€",
-      image: brunchSagrada,
+      id: 3,
+      name: "LA BIANCA",
+      description: "Ricotta cremosa, miel cruda, nueces",
+      price: "7,90€",
+      image: tostaBianca,
     },
     {
-      id: 6,
-      name: "AVOCADO TOAST",
-      description: "Pan de masa madre, aguacate, huevos poché y semillas",
-      price: "12.50€",
-      image: brunchSagrada,
-    },
-    {
-      id: 7,
-      name: "PANCAKES STACK",
-      description: "Torre de pancakes con frutas del bosque, sirope de arce y nata",
-      price: "11.00€",
-      image: brunchSagrada,
-    },
-    {
-      id: 8,
-      name: "ENGLISH BREAKFAST",
-      description: "Huevos, bacon, salchichas, beans, tomate y tostadas",
-      price: "14.90€",
-      image: brunchSagrada,
+      id: 4,
+      name: "BENEDICT",
+      description: "Aguacate, huevo poché, rúcula, semillas calabaza, salsa holandesa, pimentón dulce",
+      price: "8,90€",
+      image: tostaBenedict,
     },
   ],
 };
