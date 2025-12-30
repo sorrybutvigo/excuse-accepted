@@ -46,12 +46,14 @@ const HeroSection = () => {
           >
             <Link
               to="/menu?mode=brunch"
+              onClick={() => window.scrollTo(0, 0)}
               className="btn-neon-orange px-8 py-4 text-lg sm:text-xl text-center"
             >
               MODO BRUNCH
             </Link>
             <Link
               to="/menu?mode=burger"
+              onClick={() => window.scrollTo(0, 0)}
               className="btn-neon-purple px-8 py-4 text-lg sm:text-xl text-center"
             >
               MODO BURGER

@@ -65,22 +65,27 @@ const Footer = () => {
             <h4 className="text-display text-lg mb-4">NAVEGA</h4>
             <ul className="space-y-2">
               <li>
-                <Link to="/menu" className="text-muted-foreground hover:text-foreground transition-colors">
+                <Link to="/menu" onClick={() => window.scrollTo(0, 0)} className="text-muted-foreground hover:text-foreground transition-colors">
                   Menú
                 </Link>
               </li>
               <li>
-                <Link to="/shop" className="text-muted-foreground hover:text-foreground transition-colors">
+                <Link to="/shop" onClick={() => window.scrollTo(0, 0)} className="text-muted-foreground hover:text-foreground transition-colors">
                   Shop
                 </Link>
               </li>
               <li>
-                <Link to="/reservar" className="text-muted-foreground hover:text-foreground transition-colors">
+                <Link to="/reservar" onClick={() => window.scrollTo(0, 0)} className="text-muted-foreground hover:text-foreground transition-colors">
                   Reservar
                 </Link>
               </li>
               <li>
-                <Link to="/excuses" className="text-muted-foreground hover:text-foreground transition-colors">
+                <Link to="/expansion" onClick={() => window.scrollTo(0, 0)} className="text-muted-foreground hover:text-foreground transition-colors">
+                  Expansión
+                </Link>
+              </li>
+              <li>
+                <Link to="/excuses" onClick={() => window.scrollTo(0, 0)} className="text-muted-foreground hover:text-foreground transition-colors">
                   Excuse Generator
                 </Link>
               </li>
@@ -92,22 +97,22 @@ const Footer = () => {
             <h4 className="text-display text-lg mb-4">LEGAL</h4>
             <ul className="space-y-2">
               <li>
-                <Link to="/privacidad" className="text-muted-foreground hover:text-foreground transition-colors">
+                <Link to="/privacidad" onClick={() => window.scrollTo(0, 0)} className="text-muted-foreground hover:text-foreground transition-colors">
                   Política de Privacidad
                 </Link>
               </li>
               <li>
-                <Link to="/terminos" className="text-muted-foreground hover:text-foreground transition-colors">
+                <Link to="/terminos" onClick={() => window.scrollTo(0, 0)} className="text-muted-foreground hover:text-foreground transition-colors">
                   Términos y Condiciones
                 </Link>
               </li>
               <li>
-                <Link to="/cookies" className="text-muted-foreground hover:text-foreground transition-colors">
+                <Link to="/cookies" onClick={() => window.scrollTo(0, 0)} className="text-muted-foreground hover:text-foreground transition-colors">
                   Política de Cookies
                 </Link>
               </li>
               <li>
-                <Link to="/devoluciones" className="text-muted-foreground hover:text-foreground transition-colors">
+                <Link to="/devoluciones" onClick={() => window.scrollTo(0, 0)} className="text-muted-foreground hover:text-foreground transition-colors">
                   Devoluciones
                 </Link>
               </li>

@@ -108,6 +108,7 @@ const MenuPreview = () => {
         >
           <Link
             to="/menu"
+            onClick={() => window.scrollTo(0, 0)}
             className="btn-outline-neon px-8 py-4 inline-flex items-center gap-2 text-lg"
           >
             VER MENÚ COMPLETO
