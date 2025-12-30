@@ -5,6 +5,12 @@ import Footer from "@/components/Footer";
 
 import burgerTrufada from "@/assets/burger-trufada.png";
 import burgerBlackGarlic from "@/assets/burger-black-garlic.png";
+import burgerEmmy from "@/assets/burger-emmy.png";
+import burgerPulletBeef from "@/assets/burger-pullet-beef.png";
+import burgerSmokyChipotle from "@/assets/burger-smoky-chipotle.png";
+import burgerCheeseburger from "@/assets/burger-cheeseburger.png";
+import burgerBaconLover from "@/assets/burger-bacon-lover.png";
+import burgerLaClasica from "@/assets/burger-la-clasica.png";
 import tostaBianca from "@/assets/tosta-bianca.png";
 import tostaBenedict from "@/assets/tosta-benedict.png";
 
@@ -23,6 +29,48 @@ const menuData = {
       description: "Hamburguesa de Ternera Gallega Suprema, tomate deshidratado, queso havarti, cebolla confitada, salsa ajo negro",
       price: "12,50€",
       image: burgerBlackGarlic,
+    },
+    {
+      id: 3,
+      name: "EMMY",
+      description: "Hamburguesa de Ternera Gallega Suprema, cebolla caramelizada, salsa Emmy, queso Arzúa y piparras",
+      price: "12,50€",
+      image: burgerEmmy,
+    },
+    {
+      id: 4,
+      name: "PULLET BEEF",
+      description: "Queso cheddar, queso gorgonzola, cebolla encurtida, guacamole",
+      price: "12,90€",
+      image: burgerPulletBeef,
+    },
+    {
+      id: 5,
+      name: "SMOKY CHIPOTLE",
+      description: "Hamburguesa de Ternera Gallega Suprema, bacon crujiente, doble de queso cheddar, salsa chipotle",
+      price: "11,90€",
+      image: burgerSmokyChipotle,
+    },
+    {
+      id: 6,
+      name: "CHEESEBURGER",
+      description: "Hamburguesa de Ternera Gallega Suprema, queso cheddar",
+      price: "9,90€",
+      image: burgerCheeseburger,
+    },
+    {
+      id: 7,
+      name: "BACON LOVER",
+      description: "Hamburguesa de Ternera Gallega Suprema, doble de queso cheddar, cebolla caramelizada, bacon crujiente, pepinillo y salsa de bacon",
+      price: "12,90€",
+      image: burgerBaconLover,
+    },
+    {
+      id: 8,
+      name: "LA CLÁSICA",
+      description: "Hamburguesa de ternera gallega, queso cheese, lechuga, tomate, cebolla y pepinillo",
+      price: "10,90€",
+      image: burgerLaClasica,
     },
   ],
   brunch: [
