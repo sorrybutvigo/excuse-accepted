@@ -113,6 +113,7 @@ const ShopPreview = () => {
         >
           <Link
             to="/shop"
+            onClick={() => window.scrollTo(0, 0)}
             className="btn-neon-purple px-8 py-4 inline-flex items-center gap-2 text-lg"
           >
             VER TODA LA COLECCIÓN
