@@ -3,47 +3,29 @@ import { motion } from "framer-motion";
 import { Link } from "react-router-dom";
 import { ArrowRight } from "lucide-react";
 
-import tshirtProduct from "@/assets/tshirt-product.jpg";
-import tshirtLifestyle from "@/assets/tshirt-lifestyle.jpg";
-import hoodieProduct from "@/assets/hoodie-product.jpg";
-import hoodieLifestyle from "@/assets/hoodie-lifestyle.jpg";
-import bucketProduct from "@/assets/bucket-product.jpg";
-import bucketLifestyle from "@/assets/bucket-lifestyle.jpg";
-import socksProduct from "@/assets/socks-product.jpg";
-import socksLifestyle from "@/assets/socks-lifestyle.jpg";
+import camisetaProduct from "@/assets/camiseta-product.png";
+import camisetaLifestyle from "@/assets/camiseta-lifestyle.png";
+import sudaderaProduct from "@/assets/sudadera-product.png";
+import sudaderaLifestyle from "@/assets/sudadera-lifestyle.png";
 
 const products = [
   {
     id: 1,
-    name: "A MÍ NO ME LA DAS CON QUESO",
+    name: "SORRYBUT ESSENTIALS",
     type: "CAMISETA",
-    price: "35.00€",
-    productImage: tshirtProduct,
-    lifestyleImage: tshirtLifestyle,
+    price: "PRÓXIMAMENTE",
+    description: "El básico que nunca pasa de moda. Algodón premium con el logo que lo dice todo.",
+    productImage: camisetaProduct,
+    lifestyleImage: camisetaLifestyle,
   },
   {
     id: 2,
-    name: "RESPECT",
-    type: "HOODIE",
-    price: "65.00€",
-    productImage: hoodieProduct,
-    lifestyleImage: hoodieLifestyle,
-  },
-  {
-    id: 3,
-    name: "SORRY BUCKET",
-    type: "BUCKET HAT",
-    price: "28.00€",
-    productImage: bucketProduct,
-    lifestyleImage: bucketLifestyle,
-  },
-  {
-    id: 4,
-    name: "DIAMOND SOCKS",
-    type: "CALCETINES",
-    price: "12.00€",
-    productImage: socksProduct,
-    lifestyleImage: socksLifestyle,
+    name: "SB QUARTER ZIP",
+    type: "SUDADERA",
+    price: "PRÓXIMAMENTE",
+    description: "Suave por fuera, calentita por dentro. El uniforme oficial del brunch.",
+    productImage: sudaderaProduct,
+    lifestyleImage: sudaderaLifestyle,
   },
 ];
 
@@ -88,6 +70,7 @@ const ProductCard = ({ product, index }: { product: typeof products[0]; index: n
       {/* Content */}
       <div className="p-6">
         <h3 className="text-display text-lg md:text-xl mb-2 line-clamp-2">{product.name}</h3>
+        <p className="text-muted-foreground text-sm mb-2">{product.description}</p>
         <p className="text-secondary font-display text-xl">{product.price}</p>
       </div>
     </motion.div>
@@ -114,7 +97,7 @@ const ShopPreview = () => {
         </motion.div>
 
         {/* Products Grid */}
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
+        <div className="grid grid-cols-1 sm:grid-cols-2 gap-6 max-w-3xl mx-auto">
           {products.map((product, index) => (
             <ProductCard key={product.id} product={product} index={index} />
           ))}
