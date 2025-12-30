@@ -61,7 +61,7 @@ const ProductCard = ({ product, index }: { product: typeof products[0]; index: n
           transition={{ duration: 0.3 }}
         />
         <div className="absolute top-4 left-4">
-          <span className="bg-foreground text-background px-3 py-1 text-xs font-display">
+          <span className="bg-primary text-primary-foreground px-3 py-1 text-xs font-display">
             {product.type}
           </span>
         </div>
