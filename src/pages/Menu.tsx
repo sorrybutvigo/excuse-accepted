@@ -1,4 +1,5 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
+import { useSearchParams } from "react-router-dom";
 import { motion, AnimatePresence } from "framer-motion";
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
@@ -126,7 +127,15 @@ const menuData = {
 type MenuMode = "burger" | "brunch";
 
 const Menu = () => {
+  const [searchParams] = useSearchParams();
   const [mode, setMode] = useState<MenuMode>("burger");
+
+  useEffect(() => {
+    const modeParam = searchParams.get("mode");
+    if (modeParam === "brunch" || modeParam === "burger") {
+      setMode(modeParam);
+    }
+  }, [searchParams]);
 
   return (
     <div className="min-h-screen">
