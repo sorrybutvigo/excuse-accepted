@@ -13,6 +13,10 @@ import burgerBaconLover from "@/assets/burger-bacon-lover.png";
 import burgerLaClasica from "@/assets/burger-la-clasica.png";
 import tostaBianca from "@/assets/tosta-bianca.png";
 import tostaBenedict from "@/assets/tosta-benedict.png";
+import tostaPocheVerde from "@/assets/tosta-poche-verde.png";
+import tostaBufala from "@/assets/tosta-bufala.png";
+import tostaNordica from "@/assets/tosta-nordica.png";
+import tostaRoyale from "@/assets/tosta-royale.png";
 
 const menuData = {
   burger: [
@@ -75,14 +79,42 @@ const menuData = {
   ],
   brunch: [
     {
+      id: 1,
+      name: "POCHE VERDE",
+      description: "Aguacate, huevo poché, rúcula, semillas calabaza, pesto",
+      price: "8,90€",
+      image: tostaPocheVerde,
+    },
+    {
+      id: 2,
+      name: "LA BÚFALA",
+      description: "Tomate cherry y búfala",
+      price: "8,50€",
+      image: tostaBufala,
+    },
+    {
       id: 3,
+      name: "NÓRDICA",
+      description: "Huevos revueltos, salmón ahumado, rúcula",
+      price: "8,90€",
+      image: tostaNordica,
+    },
+    {
+      id: 4,
+      name: "ROYALE",
+      description: "Huevo poché, jamón cocido, salsa holandesa, rúcula",
+      price: "8,70€",
+      image: tostaRoyale,
+    },
+    {
+      id: 5,
       name: "LA BIANCA",
       description: "Ricotta cremosa, miel cruda, nueces",
       price: "7,90€",
       image: tostaBianca,
     },
     {
-      id: 4,
+      id: 6,
       name: "BENEDICT",
       description: "Aguacate, huevo poché, rúcula, semillas calabaza, salsa holandesa, pimentón dulce",
       price: "8,90€",
