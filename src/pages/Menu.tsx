@@ -18,6 +18,14 @@ import tostaPocheVerde from "@/assets/tosta-poche-verde.png";
 import tostaBufala from "@/assets/tosta-bufala.png";
 import tostaNordica from "@/assets/tosta-nordica.png";
 import tostaRoyale from "@/assets/tosta-royale.png";
+import tostaGallega from "@/assets/tosta-gallega.png";
+import tostaPortuguesa from "@/assets/tosta-portuguesa.png";
+import tostaAceite from "@/assets/tosta-aceite.png";
+import tostaJamonSerrano from "@/assets/tosta-jamon-serrano.png";
+import tostaAceiteTomate from "@/assets/tosta-aceite-tomate.png";
+import tostaMantequillaMermelada from "@/assets/tosta-mantequilla-mermelada.png";
+import tostaCacahuetePlatano from "@/assets/tosta-cacahuete-platano.png";
+import tostaPistachoFrambuesa from "@/assets/tosta-pistacho-frambuesa.png";
 
 const menuData = {
   burger: [
@@ -120,6 +128,62 @@ const menuData = {
       description: "Aguacate, huevo poché, rúcula, semillas calabaza, salsa holandesa, pimentón dulce",
       price: "8,90€",
       image: tostaBenedict,
+    },
+    {
+      id: 7,
+      name: "GALLEGA",
+      description: "Huevo poché, salsa de bacon, espinaca, rúcula, queso Arzúa",
+      price: "8,70€",
+      image: tostaGallega,
+    },
+    {
+      id: 8,
+      name: "PORTUGUESA",
+      description: "Queso cheddar, jamón cocido, mostaza antigua con miel",
+      price: "8,70€",
+      image: tostaPortuguesa,
+    },
+    {
+      id: 9,
+      name: "ACEITE",
+      description: "Aceite Virgen Extra",
+      price: "3,20€",
+      image: tostaAceite,
+    },
+    {
+      id: 10,
+      name: "JAMÓN SERRANO, TOMATE Y ACEITE",
+      description: "Jamón serrano, tomate, aceite",
+      price: "5,50€",
+      image: tostaJamonSerrano,
+    },
+    {
+      id: 11,
+      name: "ACEITE Y TOMATE",
+      description: "Aceite, tomate",
+      price: "3,75€",
+      image: tostaAceiteTomate,
+    },
+    {
+      id: 12,
+      name: "MANTEQUILLA Y MERMELADA",
+      description: "Mantequilla, mermelada",
+      price: "3,75€",
+      image: tostaMantequillaMermelada,
+    },
+    {
+      id: 13,
+      name: "CREMA DE CACAHUETE Y PLÁTANO",
+      description: "Crema de cacahuete, plátano",
+      price: "5,50€",
+      image: tostaCacahuetePlatano,
+    },
+    {
+      id: 14,
+      name: "CREMA DE PISTACHO Y FRAMBUESA",
+      description: "Crema de pistacho, frambuesas",
+      price: "5,90€",
+      image: tostaPistachoFrambuesa,
     },
   ],
 };
