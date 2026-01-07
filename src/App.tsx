@@ -14,6 +14,7 @@ import Terminos from "./pages/Terminos";
 import Cookies from "./pages/Cookies";
 import Devoluciones from "./pages/Devoluciones";
 import Admin from "./pages/Admin";
+import Auth from "./pages/Auth";
 import NotFound from "./pages/NotFound";
 import CookieBanner from "./components/CookieBanner";
 
@@ -37,6 +38,7 @@ const App = () => (
           <Route path="/cookies" element={<Cookies />} />
           <Route path="/devoluciones" element={<Devoluciones />} />
           <Route path="/admin" element={<Admin />} />
+          <Route path="/auth" element={<Auth />} />
           <Route path="*" element={<NotFound />} />
         </Routes>
         <CookieBanner />
