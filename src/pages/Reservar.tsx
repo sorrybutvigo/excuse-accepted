@@ -2,9 +2,9 @@ import { useState } from "react";
 import { motion } from "framer-motion";
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
-import { Calendar, Clock, Users, ArrowRight, Check } from "lucide-react";
+import { Calendar, Clock, Users, ArrowRight, Check, Loader2 } from "lucide-react";
 import { toast } from "sonner";
-
+import { supabase } from "@/integrations/supabase/client";
 const Reservar = () => {
   const [formData, setFormData] = useState({
     name: "",
@@ -17,11 +17,32 @@ const Reservar = () => {
     notes: "",
   });
   const [isSubmitted, setIsSubmitted] = useState(false);
+  const [isLoading, setIsLoading] = useState(false);
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    setIsSubmitted(true);
-    toast.success("Reserva enviada correctamente");
+    setIsLoading(true);
+    
+    try {
+      const { data, error } = await supabase.functions.invoke('send-reservation-email', {
+        body: formData,
+      });
+
+      if (error) {
+        console.error('Error sending reservation:', error);
+        toast.error("Error al enviar la reserva. Por favor, inténtalo de nuevo.");
+        return;
+      }
+
+      console.log('Reservation sent successfully:', data);
+      setIsSubmitted(true);
+      toast.success("Reserva enviada correctamente");
+    } catch (error) {
+      console.error('Error:', error);
+      toast.error("Error al enviar la reserva. Por favor, inténtalo de nuevo.");
+    } finally {
+      setIsLoading(false);
+    }
   };
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLSelectElement | HTMLTextAreaElement>) => {
@@ -239,12 +260,22 @@ const Reservar = () => {
                 {/* Submit */}
                 <motion.button
                   type="submit"
-                  whileHover={{ scale: 1.02 }}
-                  whileTap={{ scale: 0.98 }}
-                  className="w-full btn-neon-purple py-4 text-xl flex items-center justify-center gap-2"
+                  disabled={isLoading}
+                  whileHover={{ scale: isLoading ? 1 : 1.02 }}
+                  whileTap={{ scale: isLoading ? 1 : 0.98 }}
+                  className="w-full btn-neon-purple py-4 text-xl flex items-center justify-center gap-2 disabled:opacity-70 disabled:cursor-not-allowed"
                 >
-                  CONFIRMAR RESERVA
-                  <ArrowRight size={20} />
+                  {isLoading ? (
+                    <>
+                      <Loader2 size={20} className="animate-spin" />
+                      ENVIANDO...
+                    </>
+                  ) : (
+                    <>
+                      CONFIRMAR RESERVA
+                      <ArrowRight size={20} />
+                    </>
+                  )}
                 </motion.button>
               </div>
             </motion.form>
