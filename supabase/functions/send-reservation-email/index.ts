@@ -1,5 +1,6 @@
 import { serve } from "https://deno.land/std@0.190.0/http/server.ts";
 import { Resend } from "https://esm.sh/resend@2.0.0";
+import { createClient } from "https://esm.sh/@supabase/supabase-js@2.39.3";
 
 const resend = new Resend(Deno.env.get("RESEND_API_KEY"));
 
@@ -30,6 +31,35 @@ const handler = async (req: Request): Promise<Response> => {
     const reservation: ReservationRequest = await req.json();
     
     console.log("Received reservation request:", reservation);
+
+    // Create Supabase client with service role
+    const supabaseUrl = Deno.env.get("SUPABASE_URL")!;
+    const supabaseServiceKey = Deno.env.get("SUPABASE_SERVICE_ROLE_KEY")!;
+    const supabase = createClient(supabaseUrl, supabaseServiceKey);
+
+    // Save reservation to database
+    const { data: savedReservation, error: dbError } = await supabase
+      .from("reservations")
+      .insert({
+        name: reservation.name,
+        email: reservation.email,
+        phone: reservation.phone,
+        date: reservation.date,
+        time: reservation.time,
+        guests: parseInt(reservation.guests),
+        mode: reservation.mode,
+        notes: reservation.notes || null,
+        status: "pending",
+      })
+      .select()
+      .single();
+
+    if (dbError) {
+      console.error("Error saving reservation to database:", dbError);
+      throw new Error(`Database error: ${dbError.message}`);
+    }
+
+    console.log("Reservation saved to database:", savedReservation);
 
     const modeLabel = reservation.mode === "brunch" ? "Brunch" : "Burger";
     
@@ -155,7 +185,12 @@ const handler = async (req: Request): Promise<Response> => {
 
     console.log("Customer email sent:", customerEmailResponse);
 
-    return new Response(JSON.stringify({ success: true, adminEmailResponse, customerEmailResponse }), {
+    return new Response(JSON.stringify({ 
+      success: true, 
+      reservationId: savedReservation.id,
+      adminEmailResponse, 
+      customerEmailResponse 
+    }), {
       status: 200,
       headers: {
         "Content-Type": "application/json",
