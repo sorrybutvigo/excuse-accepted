@@ -6,11 +6,10 @@ import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { toast } from "@/hooks/use-toast";
-import { Loader2, Mail, Lock, LogIn, UserPlus } from "lucide-react";
+import { Loader2, Mail, Lock, LogIn } from "lucide-react";
 
 const Auth = () => {
   const navigate = useNavigate();
-  const [isLogin, setIsLogin] = useState(true);
   const [loading, setLoading] = useState(false);
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
@@ -73,44 +72,22 @@ const Auth = () => {
     setLoading(true);
 
     try {
-      if (isLogin) {
-        const { error } = await supabase.auth.signInWithPassword({
-          email,
-          password,
-        });
+      const { error } = await supabase.auth.signInWithPassword({
+        email,
+        password,
+      });
 
-        if (error) {
-          if (error.message.includes("Invalid login credentials")) {
-            throw new Error("Email o contraseña incorrectos");
-          }
-          throw error;
+      if (error) {
+        if (error.message.includes("Invalid login credentials")) {
+          throw new Error("Email o contraseña incorrectos");
         }
-
-        toast({
-          title: "¡Bienvenido!",
-          description: "Has iniciado sesión correctamente",
-        });
-      } else {
-        const { error } = await supabase.auth.signUp({
-          email,
-          password,
-          options: {
-            emailRedirectTo: `${window.location.origin}/admin`,
-          },
-        });
-
-        if (error) {
-          if (error.message.includes("User already registered")) {
-            throw new Error("Este email ya está registrado");
-          }
-          throw error;
-        }
-
-        toast({
-          title: "¡Cuenta creada!",
-          description: "Tu cuenta ha sido creada correctamente",
-        });
+        throw error;
       }
+
+      toast({
+        title: "¡Bienvenido!",
+        description: "Has iniciado sesión correctamente",
+      });
     } catch (error: any) {
       toast({
         title: "Error",
@@ -133,7 +110,7 @@ const Auth = () => {
         <div className="bg-card border border-border rounded-lg p-8">
           <div className="text-center mb-8">
             <h1 className="text-3xl font-display text-foreground mb-2">
-              {isLogin ? "Iniciar Sesión" : "Crear Cuenta"}
+              Iniciar Sesión
             </h1>
             <p className="text-muted-foreground">
               Panel de administración de Sorry But
@@ -180,27 +157,16 @@ const Auth = () => {
             >
               {loading ? (
                 <Loader2 className="w-4 h-4 animate-spin mr-2" />
-              ) : isLogin ? (
-                <LogIn className="w-4 h-4 mr-2" />
               ) : (
-                <UserPlus className="w-4 h-4 mr-2" />
+                <LogIn className="w-4 h-4 mr-2" />
               )}
-              {isLogin ? "Iniciar Sesión" : "Crear Cuenta"}
+              Iniciar Sesión
             </Button>
           </form>
 
-          <div className="mt-6 text-center">
-            <button
-              type="button"
-              onClick={() => setIsLogin(!isLogin)}
-              className="text-primary hover:underline text-sm"
-              disabled={loading}
-            >
-              {isLogin
-                ? "¿No tienes cuenta? Regístrate"
-                : "¿Ya tienes cuenta? Inicia sesión"}
-            </button>
-          </div>
+          <p className="mt-6 text-center text-sm text-muted-foreground">
+            El registro está deshabilitado. Contacta a un administrador para obtener acceso.
+          </p>
         </div>
       </motion.div>
     </div>

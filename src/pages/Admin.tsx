@@ -4,9 +4,11 @@ import { motion } from "framer-motion";
 import { supabase } from "@/integrations/supabase/client";
 import { format } from "date-fns";
 import { es } from "date-fns/locale";
-import { Calendar, Clock, Users, Phone, Mail, MessageSquare, Check, X, Loader2, LogOut } from "lucide-react";
+import { Calendar, Clock, Users, Phone, Mail, MessageSquare, Check, X, Loader2, LogOut, UserPlus } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
+import { Input } from "@/components/ui/input";
+import { Label } from "@/components/ui/label";
 import {
   Table,
   TableBody,
@@ -22,6 +24,14 @@ import {
   SelectTrigger,
   SelectValue,
 } from "@/components/ui/select";
+import {
+  Dialog,
+  DialogContent,
+  DialogDescription,
+  DialogHeader,
+  DialogTitle,
+  DialogTrigger,
+} from "@/components/ui/dialog";
 import { toast } from "@/hooks/use-toast";
 import { User, Session } from "@supabase/supabase-js";
 
@@ -48,6 +58,10 @@ const Admin = () => {
   const [loading, setLoading] = useState(true);
   const [filterStatus, setFilterStatus] = useState<string>("all");
   const [filterMode, setFilterMode] = useState<string>("all");
+  const [inviteDialogOpen, setInviteDialogOpen] = useState(false);
+  const [inviteEmail, setInviteEmail] = useState("");
+  const [invitePassword, setInvitePassword] = useState("");
+  const [inviteLoading, setInviteLoading] = useState(false);
 
   useEffect(() => {
     const { data: { subscription } } = supabase.auth.onAuthStateChange(
@@ -105,6 +119,56 @@ const Admin = () => {
   const handleLogout = async () => {
     await supabase.auth.signOut();
     navigate("/auth");
+  };
+
+  const handleInviteAdmin = async (e: React.FormEvent) => {
+    e.preventDefault();
+    
+    if (!inviteEmail || !invitePassword) {
+      toast({
+        title: "Error",
+        description: "Por favor, completa todos los campos",
+        variant: "destructive",
+      });
+      return;
+    }
+
+    if (invitePassword.length < 6) {
+      toast({
+        title: "Error",
+        description: "La contraseña debe tener al menos 6 caracteres",
+        variant: "destructive",
+      });
+      return;
+    }
+
+    setInviteLoading(true);
+
+    try {
+      const { data, error } = await supabase.functions.invoke('invite-admin', {
+        body: { email: inviteEmail, password: invitePassword }
+      });
+
+      if (error) throw error;
+      if (data.error) throw new Error(data.error);
+
+      toast({
+        title: "¡Admin creado!",
+        description: `Se ha creado la cuenta para ${inviteEmail}`,
+      });
+
+      setInviteEmail("");
+      setInvitePassword("");
+      setInviteDialogOpen(false);
+    } catch (error: any) {
+      toast({
+        title: "Error",
+        description: error.message || "No se pudo crear el administrador",
+        variant: "destructive",
+      });
+    } finally {
+      setInviteLoading(false);
+    }
   };
 
   const updateStatus = async (id: string, newStatus: string) => {
@@ -205,6 +269,55 @@ const Admin = () => {
               <Button onClick={fetchReservations} variant="outline">
                 Actualizar
               </Button>
+
+              <Dialog open={inviteDialogOpen} onOpenChange={setInviteDialogOpen}>
+                <DialogTrigger asChild>
+                  <Button variant="outline" className="text-primary">
+                    <UserPlus className="w-4 h-4 mr-2" />
+                    Invitar Admin
+                  </Button>
+                </DialogTrigger>
+                <DialogContent>
+                  <DialogHeader>
+                    <DialogTitle>Invitar Nuevo Administrador</DialogTitle>
+                    <DialogDescription>
+                      Crea una cuenta para un nuevo administrador del panel.
+                    </DialogDescription>
+                  </DialogHeader>
+                  <form onSubmit={handleInviteAdmin} className="space-y-4 mt-4">
+                    <div className="space-y-2">
+                      <Label htmlFor="invite-email">Email</Label>
+                      <Input
+                        id="invite-email"
+                        type="email"
+                        placeholder="admin@ejemplo.com"
+                        value={inviteEmail}
+                        onChange={(e) => setInviteEmail(e.target.value)}
+                        disabled={inviteLoading}
+                      />
+                    </div>
+                    <div className="space-y-2">
+                      <Label htmlFor="invite-password">Contraseña</Label>
+                      <Input
+                        id="invite-password"
+                        type="password"
+                        placeholder="Mínimo 6 caracteres"
+                        value={invitePassword}
+                        onChange={(e) => setInvitePassword(e.target.value)}
+                        disabled={inviteLoading}
+                      />
+                    </div>
+                    <Button type="submit" className="w-full btn-neon-purple" disabled={inviteLoading}>
+                      {inviteLoading ? (
+                        <Loader2 className="w-4 h-4 animate-spin mr-2" />
+                      ) : (
+                        <UserPlus className="w-4 h-4 mr-2" />
+                      )}
+                      Crear Administrador
+                    </Button>
+                  </form>
+                </DialogContent>
+              </Dialog>
               
               <Button onClick={handleLogout} variant="outline" className="text-destructive">
                 <LogOut className="w-4 h-4 mr-2" />
