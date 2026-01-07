@@ -1,9 +1,10 @@
 import { useState, useEffect } from "react";
+import { useNavigate } from "react-router-dom";
 import { motion } from "framer-motion";
 import { supabase } from "@/integrations/supabase/client";
 import { format } from "date-fns";
 import { es } from "date-fns/locale";
-import { Calendar, Clock, Users, Phone, Mail, MessageSquare, Check, X, Loader2 } from "lucide-react";
+import { Calendar, Clock, Users, Phone, Mail, MessageSquare, Check, X, Loader2, LogOut } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
 import {
@@ -22,6 +23,7 @@ import {
   SelectValue,
 } from "@/components/ui/select";
 import { toast } from "@/hooks/use-toast";
+import { User, Session } from "@supabase/supabase-js";
 
 interface Reservation {
   id: string;
@@ -38,10 +40,40 @@ interface Reservation {
 }
 
 const Admin = () => {
+  const navigate = useNavigate();
+  const [user, setUser] = useState<User | null>(null);
+  const [session, setSession] = useState<Session | null>(null);
+  const [authLoading, setAuthLoading] = useState(true);
   const [reservations, setReservations] = useState<Reservation[]>([]);
   const [loading, setLoading] = useState(true);
   const [filterStatus, setFilterStatus] = useState<string>("all");
   const [filterMode, setFilterMode] = useState<string>("all");
+
+  useEffect(() => {
+    const { data: { subscription } } = supabase.auth.onAuthStateChange(
+      (event, session) => {
+        setSession(session);
+        setUser(session?.user ?? null);
+        setAuthLoading(false);
+        
+        if (!session) {
+          navigate("/auth");
+        }
+      }
+    );
+
+    supabase.auth.getSession().then(({ data: { session } }) => {
+      setSession(session);
+      setUser(session?.user ?? null);
+      setAuthLoading(false);
+      
+      if (!session) {
+        navigate("/auth");
+      }
+    });
+
+    return () => subscription.unsubscribe();
+  }, [navigate]);
 
   const fetchReservations = async () => {
     setLoading(true);
@@ -65,8 +97,15 @@ const Admin = () => {
   };
 
   useEffect(() => {
-    fetchReservations();
-  }, [filterStatus, filterMode]);
+    if (session) {
+      fetchReservations();
+    }
+  }, [filterStatus, filterMode, session]);
+
+  const handleLogout = async () => {
+    await supabase.auth.signOut();
+    navigate("/auth");
+  };
 
   const updateStatus = async (id: string, newStatus: string) => {
     try {
@@ -113,6 +152,14 @@ const Admin = () => {
     );
   };
 
+  if (authLoading) {
+    return (
+      <div className="min-h-screen bg-background flex items-center justify-center">
+        <Loader2 className="w-8 h-8 animate-spin text-primary" />
+      </div>
+    );
+  }
+
   return (
     <div className="min-h-screen bg-background">
       <div className="container mx-auto px-4 py-8">
@@ -122,9 +169,14 @@ const Admin = () => {
           transition={{ duration: 0.5 }}
         >
           <div className="flex flex-col md:flex-row md:items-center md:justify-between mb-8">
-            <h1 className="text-3xl font-bold text-foreground mb-4 md:mb-0">
-              Panel de Reservas
-            </h1>
+            <div>
+              <h1 className="text-3xl font-bold text-foreground mb-2">
+                Panel de Reservas
+              </h1>
+              {user && (
+                <p className="text-muted-foreground text-sm">{user.email}</p>
+              )}
+            </div>
             
             <div className="flex flex-wrap gap-4">
               <Select value={filterStatus} onValueChange={setFilterStatus}>
@@ -152,6 +204,11 @@ const Admin = () => {
 
               <Button onClick={fetchReservations} variant="outline">
                 Actualizar
+              </Button>
+              
+              <Button onClick={handleLogout} variant="outline" className="text-destructive">
+                <LogOut className="w-4 h-4 mr-2" />
+                Salir
               </Button>
             </div>
           </div>
