@@ -34,7 +34,7 @@ const handler = async (req: Request): Promise<Response> => {
     const modeLabel = reservation.mode === "brunch" ? "Brunch" : "Burger";
     
     // Send email to info@sorrybut.es
-    const emailResponse = await resend.emails.send({
+    const adminEmailResponse = await resend.emails.send({
       from: "Sorry But <onboarding@resend.dev>",
       to: ["info@sorrybut.es"],
       subject: `Nueva Reserva - ${reservation.name} - ${modeLabel}`,
@@ -92,9 +92,70 @@ const handler = async (req: Request): Promise<Response> => {
       `,
     });
 
-    console.log("Email sent successfully:", emailResponse);
+    console.log("Admin email sent:", adminEmailResponse);
 
-    return new Response(JSON.stringify({ success: true, emailResponse }), {
+    // Send confirmation email to customer
+    const customerEmailResponse = await resend.emails.send({
+      from: "Sorry But <onboarding@resend.dev>",
+      to: [reservation.email],
+      subject: `¡Reserva Confirmada! - Sorry But`,
+      html: `
+        <div style="font-family: Arial, sans-serif; max-width: 600px; margin: 0 auto; padding: 20px;">
+          <h1 style="color: #333; border-bottom: 2px solid #8B5CF6; padding-bottom: 10px;">
+            🍔 ¡Gracias por tu reserva, ${reservation.name}!
+          </h1>
+          
+          <p style="color: #333; font-size: 16px; line-height: 1.6;">
+            Hemos recibido tu reserva correctamente. Aquí tienes los detalles:
+          </p>
+          
+          <div style="background-color: #f8f8f8; padding: 20px; border-radius: 8px; margin: 20px 0;">
+            <h2 style="color: #8B5CF6; margin-top: 0;">Detalles de tu Reserva</h2>
+            
+            <table style="width: 100%; border-collapse: collapse;">
+              <tr>
+                <td style="padding: 8px 0; font-weight: bold; color: #555;">Experiencia:</td>
+                <td style="padding: 8px 0; color: #333;">${modeLabel}</td>
+              </tr>
+              <tr>
+                <td style="padding: 8px 0; font-weight: bold; color: #555;">Fecha:</td>
+                <td style="padding: 8px 0; color: #333;">${reservation.date}</td>
+              </tr>
+              <tr>
+                <td style="padding: 8px 0; font-weight: bold; color: #555;">Hora:</td>
+                <td style="padding: 8px 0; color: #333;">${reservation.time}</td>
+              </tr>
+              <tr>
+                <td style="padding: 8px 0; font-weight: bold; color: #555;">Personas:</td>
+                <td style="padding: 8px 0; color: #333;">${reservation.guests}</td>
+              </tr>
+              ${reservation.notes ? `
+              <tr>
+                <td style="padding: 8px 0; font-weight: bold; color: #555;">Notas:</td>
+                <td style="padding: 8px 0; color: #333;">${reservation.notes}</td>
+              </tr>
+              ` : ''}
+            </table>
+          </div>
+          
+          <p style="color: #333; font-size: 16px; line-height: 1.6;">
+            ¡Te esperamos! Si necesitas modificar o cancelar tu reserva, no dudes en contactarnos.
+          </p>
+          
+          <div style="margin-top: 30px; padding-top: 20px; border-top: 1px solid #eee;">
+            <p style="color: #666; font-size: 14px; margin: 0;">
+              <strong>Sorry But</strong><br>
+              📍 Tu burger spot favorito<br>
+              📧 info@sorrybut.es
+            </p>
+          </div>
+        </div>
+      `,
+    });
+
+    console.log("Customer email sent:", customerEmailResponse);
+
+    return new Response(JSON.stringify({ success: true, adminEmailResponse, customerEmailResponse }), {
       status: 200,
       headers: {
         "Content-Type": "application/json",
