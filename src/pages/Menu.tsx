@@ -45,14 +45,14 @@ const menuData = {
     },
     {
       id: 3,
-      name: "EMMY",
+      name: "AFTER WORK",
       description: "Hamburguesa de Ternera Gallega Suprema, cebolla caramelizada, salsa Emmy, queso Arzúa y piparras",
       price: "12,50€",
       image: burgerEmmy,
     },
     {
       id: 4,
-      name: "PULLET BEEF",
+      name: "PULLED BEEF",
       description: "Queso cheddar, queso gorgonzola, cebolla encurtida, guacamole",
       price: "12,90€",
       image: burgerPulletBeef,
