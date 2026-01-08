@@ -190,9 +190,17 @@ const menuData = {
 
 type MenuMode = "burger" | "brunch";
 
+const brunchSubmenus = ["Tostadas", "Bollería", "Bowls"] as const;
+const burgerSubmenus = ["Burger", "Tostadas", "Compartir", "Ensaladas", "Carnes", "Pescados", "Guarniciones"] as const;
+
+type BrunchSubmenu = typeof brunchSubmenus[number];
+type BurgerSubmenu = typeof burgerSubmenus[number];
+
 const Menu = () => {
   const [searchParams] = useSearchParams();
   const [mode, setMode] = useState<MenuMode>("burger");
+  const [brunchSubmenu, setBrunchSubmenu] = useState<BrunchSubmenu>("Tostadas");
+  const [burgerSubmenu, setBurgerSubmenu] = useState<BurgerSubmenu>("Burger");
 
   useEffect(() => {
     const modeParam = searchParams.get("mode");
@@ -200,6 +208,21 @@ const Menu = () => {
       setMode(modeParam);
     }
   }, [searchParams]);
+
+  const getCurrentItems = () => {
+    if (mode === "brunch" && brunchSubmenu === "Tostadas") {
+      return menuData.brunch;
+    }
+    if (mode === "burger" && burgerSubmenu === "Burger") {
+      return menuData.burger;
+    }
+    if (mode === "burger" && burgerSubmenu === "Tostadas") {
+      return menuData.brunch;
+    }
+    return [];
+  };
+
+  const currentItems = getCurrentItems();
 
   return (
     <div className="min-h-screen">
@@ -225,7 +248,7 @@ const Menu = () => {
             </motion.h1>
 
             {/* Mode Toggle */}
-            <div className="flex justify-center gap-4">
+            <div className="flex justify-center gap-4 mb-6">
               <button
                 onClick={() => setMode("brunch")}
                 className={`px-6 py-3 text-display transition-all ${
@@ -247,6 +270,48 @@ const Menu = () => {
                 BURGER
               </button>
             </div>
+
+            {/* Submenus */}
+            <AnimatePresence mode="wait">
+              <motion.div
+                key={mode}
+                initial={{ opacity: 0, y: 10 }}
+                animate={{ opacity: 1, y: 0 }}
+                exit={{ opacity: 0, y: -10 }}
+                transition={{ duration: 0.2 }}
+                className="flex flex-wrap justify-center gap-2 md:gap-3"
+              >
+                {mode === "brunch" ? (
+                  brunchSubmenus.map((submenu) => (
+                    <button
+                      key={submenu}
+                      onClick={() => setBrunchSubmenu(submenu)}
+                      className={`px-4 py-2 text-sm md:text-base font-medium transition-all rounded-full ${
+                        brunchSubmenu === submenu
+                          ? "bg-secondary text-secondary-foreground"
+                          : "bg-muted/30 text-muted-foreground hover:bg-secondary/20 hover:text-secondary"
+                      }`}
+                    >
+                      {submenu}
+                    </button>
+                  ))
+                ) : (
+                  burgerSubmenus.map((submenu) => (
+                    <button
+                      key={submenu}
+                      onClick={() => setBurgerSubmenu(submenu)}
+                      className={`px-4 py-2 text-sm md:text-base font-medium transition-all rounded-full ${
+                        burgerSubmenu === submenu
+                          ? "bg-primary text-primary-foreground"
+                          : "bg-muted/30 text-muted-foreground hover:bg-primary/20 hover:text-primary"
+                      }`}
+                    >
+                      {submenu}
+                    </button>
+                  ))
+                )}
+              </motion.div>
+            </AnimatePresence>
           </div>
         </section>
 
@@ -254,39 +319,54 @@ const Menu = () => {
         <section className="pb-20 md:pb-32">
           <div className="container mx-auto px-4">
             <AnimatePresence mode="wait">
-              <motion.div
-                key={mode}
-                initial={{ opacity: 0, y: 20 }}
-                animate={{ opacity: 1, y: 0 }}
-                exit={{ opacity: 0, y: -20 }}
-                transition={{ duration: 0.3 }}
-                className="grid grid-cols-1 md:grid-cols-2 gap-6 md:gap-8"
-              >
-                {menuData[mode].map((item, index) => (
-                  <motion.div
-                    key={item.id}
-                    initial={{ opacity: 0, y: 40 }}
-                    animate={{ opacity: 1, y: 0 }}
-                    transition={{ delay: index * 0.1 }}
-                    className="card-brutal flex flex-col md:flex-row overflow-hidden group"
-                  >
-                    <div className="md:w-1/3 aspect-square md:aspect-auto overflow-hidden">
-                      <img
-                        src={item.image}
-                        alt={item.name}
-                        className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110"
-                      />
-                    </div>
-                    <div className="p-6 md:w-2/3 flex flex-col justify-center">
-                      <div className="flex justify-between items-start mb-2">
-                        <h3 className="text-display text-2xl md:text-3xl">{item.name}</h3>
-                        <span className="price-tag text-lg">{item.price}</span>
+              {currentItems.length > 0 ? (
+                <motion.div
+                  key={`${mode}-${mode === "brunch" ? brunchSubmenu : burgerSubmenu}`}
+                  initial={{ opacity: 0, y: 20 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  exit={{ opacity: 0, y: -20 }}
+                  transition={{ duration: 0.3 }}
+                  className="grid grid-cols-1 md:grid-cols-2 gap-6 md:gap-8"
+                >
+                  {currentItems.map((item, index) => (
+                    <motion.div
+                      key={item.id}
+                      initial={{ opacity: 0, y: 40 }}
+                      animate={{ opacity: 1, y: 0 }}
+                      transition={{ delay: index * 0.1 }}
+                      className="card-brutal flex flex-col md:flex-row overflow-hidden group"
+                    >
+                      <div className="md:w-1/3 aspect-square md:aspect-auto overflow-hidden">
+                        <img
+                          src={item.image}
+                          alt={item.name}
+                          className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110"
+                        />
                       </div>
-                      <p className="text-muted-foreground">{item.description}</p>
-                    </div>
-                  </motion.div>
-                ))}
-              </motion.div>
+                      <div className="p-6 md:w-2/3 flex flex-col justify-center">
+                        <div className="flex justify-between items-start mb-2">
+                          <h3 className="text-display text-2xl md:text-3xl">{item.name}</h3>
+                          <span className="price-tag text-lg">{item.price}</span>
+                        </div>
+                        <p className="text-muted-foreground">{item.description}</p>
+                      </div>
+                    </motion.div>
+                  ))}
+                </motion.div>
+              ) : (
+                <motion.div
+                  key={`${mode}-${mode === "brunch" ? brunchSubmenu : burgerSubmenu}-empty`}
+                  initial={{ opacity: 0, y: 20 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  exit={{ opacity: 0, y: -20 }}
+                  transition={{ duration: 0.3 }}
+                  className="text-center py-20"
+                >
+                  <p className="text-muted-foreground text-xl">
+                    Próximamente...
+                  </p>
+                </motion.div>
+              )}
             </AnimatePresence>
           </div>
         </section>
