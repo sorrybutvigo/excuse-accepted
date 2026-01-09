@@ -32,6 +32,16 @@ import croissantMixto from "@/assets/croissant-mixto.png";
 import croissantNutella from "@/assets/croissant-nutella.png";
 import sandwichMixto from "@/assets/sandwich-mixto.png";
 import bowlYogurt from "@/assets/bowl-yogurt.png";
+import patatasPulledBeefArzua from "@/assets/patatas-pulled-beef-arzua.png";
+import croquetasPulledBeef from "@/assets/croquetas-pulled-beef.png";
+import croquetasJamonSerrano from "@/assets/croquetas-jamon-serrano.png";
+import hummusRemolacha from "@/assets/hummus-remolacha.png";
+import nachosBerenjena from "@/assets/nachos-berenjena.png";
+import nachosGuacamole from "@/assets/nachos-guacamole.png";
+import patatasBravas from "@/assets/patatas-bravas.png";
+import patatasQuesoTrufadoBacon from "@/assets/patatas-queso-trufado-bacon.png";
+import tequenosTartara from "@/assets/tequenos-tartara.png";
+import fingersPollo from "@/assets/fingers-pollo.png";
 
 const menuData = {
   burger: [
@@ -238,6 +248,78 @@ const menuData = {
       image: bowlYogurt,
     },
   ],
+  burgerCompartir: [
+    {
+      id: 1,
+      name: "PATATAS CON PULLED BEEF Y QUESO DE ARZÚA",
+      description: "Patatas fritas con pulled beef y queso de Arzúa gratinado",
+      price: "11,90€",
+      image: patatasPulledBeefArzua,
+    },
+    {
+      id: 2,
+      name: "CROQUETAS DE PULLED BEEF CASERAS",
+      description: "Croquetas caseras de pulled beef",
+      price: "9,90€",
+      image: croquetasPulledBeef,
+    },
+    {
+      id: 3,
+      name: "CROQUETAS DE JAMÓN SERRANO CASERAS",
+      description: "Croquetas caseras de jamón serrano",
+      price: "9,90€",
+      image: croquetasJamonSerrano,
+    },
+    {
+      id: 4,
+      name: "HUMMUS DE REMOLACHA Y GARBANZOS",
+      description: "Hummus casero de remolacha y garbanzos",
+      price: "9,90€",
+      image: hummusRemolacha,
+    },
+    {
+      id: 5,
+      name: "NACHOS CON BERENJENA",
+      description: "Nachos con berenjena asada",
+      price: "9,90€",
+      image: nachosBerenjena,
+    },
+    {
+      id: 6,
+      name: "NACHOS CON GUACAMOLE",
+      description: "Nachos con guacamole casero",
+      price: "9,90€",
+      image: nachosGuacamole,
+    },
+    {
+      id: 7,
+      name: "PATATAS BRAVAS",
+      description: "Patatas bravas con salsa brava casera",
+      price: "7,90€",
+      image: patatasBravas,
+    },
+    {
+      id: 8,
+      name: "PATATAS QUESO TRUFADO Y BACON",
+      description: "Patatas con queso de oveja trufado y bacon crispy",
+      price: "9,90€",
+      image: patatasQuesoTrufadoBacon,
+    },
+    {
+      id: 9,
+      name: "TEQUEÑOS SALSA TÁRTARA",
+      description: "Tequeños en salsa tártara",
+      price: "9,90€",
+      image: tequenosTartara,
+    },
+    {
+      id: 10,
+      name: "FINGERS DE POLLO",
+      description: "Fingers de pollo crujientes",
+      price: "9,90€",
+      image: fingersPollo,
+    },
+  ],
 };
 
 type MenuMode = "burger" | "brunch";
@@ -267,11 +349,10 @@ const Menu = () => {
       if (brunchSubmenu === "Bollería") return menuData.brunchBolleria;
       if (brunchSubmenu === "Bowls") return menuData.brunchBowls;
     }
-    if (mode === "burger" && burgerSubmenu === "Burger") {
-      return menuData.burger;
-    }
-    if (mode === "burger" && burgerSubmenu === "Tostadas") {
-      return menuData.brunchTostadas;
+    if (mode === "burger") {
+      if (burgerSubmenu === "Burger") return menuData.burger;
+      if (burgerSubmenu === "Tostadas") return menuData.brunchTostadas;
+      if (burgerSubmenu === "Compartir") return menuData.burgerCompartir;
     }
     return [];
   };
