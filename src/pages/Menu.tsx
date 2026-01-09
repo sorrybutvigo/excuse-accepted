@@ -26,6 +26,12 @@ import tostaAceiteTomate from "@/assets/tosta-aceite-tomate.png";
 import tostaMantequillaMermelada from "@/assets/tosta-mantequilla-mermelada.png";
 import tostaCacahuetePlatano from "@/assets/tosta-cacahuete-platano.png";
 import tostaPistachoFrambuesa from "@/assets/tosta-pistacho-frambuesa.png";
+import croissant from "@/assets/croissant.png";
+import croissantMermelada from "@/assets/croissant-mermelada.png";
+import croissantMixto from "@/assets/croissant-mixto.png";
+import croissantNutella from "@/assets/croissant-nutella.png";
+import sandwichMixto from "@/assets/sandwich-mixto.png";
+import bowlYogurt from "@/assets/bowl-yogurt.png";
 
 const menuData = {
   burger: [
@@ -86,7 +92,7 @@ const menuData = {
       image: burgerLaClasica,
     },
   ],
-  brunch: [
+  brunchTostadas: [
     {
       id: 1,
       name: "POCHE VERDE",
@@ -186,6 +192,52 @@ const menuData = {
       image: tostaPistachoFrambuesa,
     },
   ],
+  brunchBolleria: [
+    {
+      id: 1,
+      name: "CROISSANT",
+      description: "Croissant de mantequilla recién horneado",
+      price: "2,75€",
+      image: croissant,
+    },
+    {
+      id: 2,
+      name: "CROISSANT CON MERMELADA",
+      description: "Croissant relleno de mermelada de pera con vainilla",
+      price: "3,75€",
+      image: croissantMermelada,
+    },
+    {
+      id: 3,
+      name: "CROISSANT MIXTO",
+      description: "Croissant relleno de jamón y queso",
+      price: "4,50€",
+      image: croissantMixto,
+    },
+    {
+      id: 4,
+      name: "CROISSANT NUTELLA",
+      description: "Croissant relleno de crema de cacao y avellana",
+      price: "4,25€",
+      image: croissantNutella,
+    },
+    {
+      id: 5,
+      name: "SANDWICH MIXTO",
+      description: "Pan de molde relleno de jamón y queso",
+      price: "4,50€",
+      image: sandwichMixto,
+    },
+  ],
+  brunchBowls: [
+    {
+      id: 1,
+      name: "BOWL DE YOGURT A TU GUSTO",
+      description: "Yogurt natural con toppings a elegir",
+      price: "4,50€",
+      image: bowlYogurt,
+    },
+  ],
 };
 
 type MenuMode = "burger" | "brunch";
@@ -210,14 +262,16 @@ const Menu = () => {
   }, [searchParams]);
 
   const getCurrentItems = () => {
-    if (mode === "brunch" && brunchSubmenu === "Tostadas") {
-      return menuData.brunch;
+    if (mode === "brunch") {
+      if (brunchSubmenu === "Tostadas") return menuData.brunchTostadas;
+      if (brunchSubmenu === "Bollería") return menuData.brunchBolleria;
+      if (brunchSubmenu === "Bowls") return menuData.brunchBowls;
     }
     if (mode === "burger" && burgerSubmenu === "Burger") {
       return menuData.burger;
     }
     if (mode === "burger" && burgerSubmenu === "Tostadas") {
-      return menuData.brunch;
+      return menuData.brunchTostadas;
     }
     return [];
   };
