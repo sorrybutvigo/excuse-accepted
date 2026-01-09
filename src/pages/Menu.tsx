@@ -43,6 +43,8 @@ import patatasQuesoTrufadoBacon from "@/assets/patatas-queso-trufado-bacon.png";
 import tequenosTartara from "@/assets/tequenos-tartara.png";
 import fingersPollo from "@/assets/fingers-pollo.png";
 import aguacatePoche from "@/assets/aguacate-poche.png";
+import ensaladaSalmonRuloCabra from "@/assets/ensalada-salmon-rulo-cabra.png";
+import ensaladaCesar from "@/assets/ensalada-cesar.png";
 
 const menuData = {
   burger: [
@@ -328,6 +330,22 @@ const menuData = {
       image: aguacatePoche,
     },
   ],
+  burgerEnsaladas: [
+    {
+      id: 1,
+      name: "ENSALADA DE SALMÓN AHUMADO CON RULO DE CABRA",
+      description: "Salmón ahumado, rulo de cabra, manzana y nueces",
+      price: "14,90€",
+      image: ensaladaSalmonRuloCabra,
+    },
+    {
+      id: 2,
+      name: "ENSALADA CESAR",
+      description: "Picatostes, parmesano, lechuga, pechuga de pollo con salsa cesar",
+      price: "12,90€",
+      image: ensaladaCesar,
+    },
+  ],
 };
 
 type MenuMode = "burger" | "brunch";
@@ -361,6 +379,7 @@ const Menu = () => {
       if (burgerSubmenu === "Burger") return menuData.burger;
       if (burgerSubmenu === "Tostadas") return menuData.brunchTostadas;
       if (burgerSubmenu === "Compartir") return menuData.burgerCompartir;
+      if (burgerSubmenu === "Ensaladas") return menuData.burgerEnsaladas;
     }
     return [];
   };
