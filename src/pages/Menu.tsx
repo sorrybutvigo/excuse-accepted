@@ -42,6 +42,7 @@ import patatasBravas from "@/assets/patatas-bravas.png";
 import patatasQuesoTrufadoBacon from "@/assets/patatas-queso-trufado-bacon.png";
 import tequenosTartara from "@/assets/tequenos-tartara.png";
 import fingersPollo from "@/assets/fingers-pollo.png";
+import aguacatePoche from "@/assets/aguacate-poche.png";
 
 const menuData = {
   burger: [
@@ -318,6 +319,13 @@ const menuData = {
       description: "Fingers de pollo crujientes",
       price: "9,90€",
       image: fingersPollo,
+    },
+    {
+      id: 11,
+      name: "AGUACATE POCHÉ",
+      description: "Aguacate con huevo poché y bacon crujiente bañado en salsa holandesa",
+      price: "8,90€",
+      image: aguacatePoche,
     },
   ],
 };
