@@ -45,6 +45,13 @@ import fingersPollo from "@/assets/fingers-pollo.png";
 import aguacatePoche from "@/assets/aguacate-poche.png";
 import ensaladaSalmonRuloCabra from "@/assets/ensalada-salmon-rulo-cabra.png";
 import ensaladaCesar from "@/assets/ensalada-cesar.png";
+import pechugaPolloPlancha from "@/assets/pechuga-pollo-plancha.png";
+import urbanSteak from "@/assets/urban-steak.png";
+import cachopo from "@/assets/cachopo.png";
+import salmonPlancha from "@/assets/salmon-plancha.png";
+import arrozIntegral from "@/assets/arroz-integral.png";
+import patatasBig from "@/assets/patatas-big.png";
+import patatasMedium from "@/assets/patatas-medium.png";
 
 const menuData = {
   burger: [
@@ -346,6 +353,19 @@ const menuData = {
       image: ensaladaCesar,
     },
   ],
+  burgerCarnes: [
+    { id: 1, name: "PECHUGA DE POLLO PLANCHA", description: "Pechuga de pollo a la plancha con patatas fritas", price: "12,90€", image: pechugaPolloPlancha },
+    { id: 2, name: "URBAN STEAK", description: "Filete de ternera Gallega con patatas fritas", price: "15,90€", image: urbanSteak },
+    { id: 3, name: "CACHOPO", description: "Cachopo de ternera Gallega con patatas fritas", price: "19,90€", image: cachopo },
+  ],
+  burgerPescados: [
+    { id: 1, name: "SALMÓN PLANCHA", description: "Salmón a la plancha con parmentier de Boniato", price: "17,50€", image: salmonPlancha },
+  ],
+  burgerGuarniciones: [
+    { id: 1, name: "ARROZ INTEGRAL", description: "", price: "2,90€", image: arrozIntegral },
+    { id: 2, name: "PATATAS BIG", description: "", price: "4,90€", image: patatasBig },
+    { id: 3, name: "PATATAS MEDIUM", description: "", price: "2,90€", image: patatasMedium },
+  ],
 };
 
 type MenuMode = "burger" | "brunch";
@@ -380,6 +400,9 @@ const Menu = () => {
       if (burgerSubmenu === "Tostadas") return menuData.brunchTostadas;
       if (burgerSubmenu === "Compartir") return menuData.burgerCompartir;
       if (burgerSubmenu === "Ensaladas") return menuData.burgerEnsaladas;
+      if (burgerSubmenu === "Carnes") return menuData.burgerCarnes;
+      if (burgerSubmenu === "Pescados") return menuData.burgerPescados;
+      if (burgerSubmenu === "Guarniciones") return menuData.burgerGuarniciones;
     }
     return [];
   };
