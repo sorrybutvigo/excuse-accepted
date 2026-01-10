@@ -52,6 +52,9 @@ import salmonPlancha from "@/assets/salmon-plancha.png";
 import arrozIntegral from "@/assets/arroz-integral.png";
 import patatasBig from "@/assets/patatas-big.png";
 import patatasMedium from "@/assets/patatas-medium.png";
+import tartaPistacho from "@/assets/tarta-pistacho.png";
+import tartaQueso from "@/assets/tarta-queso.png";
+import mmBrownie from "@/assets/mm-brownie.png";
 
 const menuData = {
   burger: [
@@ -366,12 +369,22 @@ const menuData = {
     { id: 2, name: "PATATAS BIG", description: "", price: "4,90€", image: patatasBig },
     { id: 3, name: "PATATAS MEDIUM", description: "", price: "2,90€", image: patatasMedium },
   ],
+  brunchDulces: [
+    { id: 1, name: "TARTA DE PISTACHO", description: "Tarta de queso y pistacho casera", price: "5,90€", image: tartaPistacho },
+    { id: 2, name: "TARTA DE QUESO", description: "Tarta de queso casera", price: "5,50€", image: tartaQueso },
+    { id: 3, name: "M&M'S BROWNIE", description: "Brownie casero con M&M's", price: "5,90€", image: mmBrownie },
+  ],
+  burgerPostres: [
+    { id: 1, name: "TARTA DE PISTACHO", description: "Tarta de queso y pistacho casera", price: "5,90€", image: tartaPistacho },
+    { id: 2, name: "TARTA DE QUESO", description: "Tarta de queso casera", price: "5,50€", image: tartaQueso },
+    { id: 3, name: "M&M'S BROWNIE", description: "Brownie casero con M&M's", price: "5,90€", image: mmBrownie },
+  ],
 };
 
 type MenuMode = "burger" | "brunch";
 
-const brunchSubmenus = ["Tostadas", "Bollería", "Bowls"] as const;
-const burgerSubmenus = ["Burger", "Tostadas", "Compartir", "Ensaladas", "Carnes", "Pescados", "Guarniciones"] as const;
+const brunchSubmenus = ["Tostadas", "Bollería", "Bowls", "Dulces"] as const;
+const burgerSubmenus = ["Burger", "Tostadas", "Compartir", "Ensaladas", "Carnes", "Pescados", "Guarniciones", "Postres"] as const;
 
 type BrunchSubmenu = typeof brunchSubmenus[number];
 type BurgerSubmenu = typeof burgerSubmenus[number];
@@ -394,6 +407,7 @@ const Menu = () => {
       if (brunchSubmenu === "Tostadas") return menuData.brunchTostadas;
       if (brunchSubmenu === "Bollería") return menuData.brunchBolleria;
       if (brunchSubmenu === "Bowls") return menuData.brunchBowls;
+      if (brunchSubmenu === "Dulces") return menuData.brunchDulces;
     }
     if (mode === "burger") {
       if (burgerSubmenu === "Burger") return menuData.burger;
@@ -403,6 +417,7 @@ const Menu = () => {
       if (burgerSubmenu === "Carnes") return menuData.burgerCarnes;
       if (burgerSubmenu === "Pescados") return menuData.burgerPescados;
       if (burgerSubmenu === "Guarniciones") return menuData.burgerGuarniciones;
+      if (burgerSubmenu === "Postres") return menuData.burgerPostres;
     }
     return [];
   };
