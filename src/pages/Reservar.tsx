@@ -2,7 +2,6 @@ import { motion } from "framer-motion";
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
 import { Calendar, MapPin, Clock, Phone, ArrowRight } from "lucide-react";
-import restauranteAmbiente from "@/assets/restaurante-ambiente.jpg";
 
 const REVO_FLOW_URL = "https://revoflow.works/widget/booking?widget_token=sY0PImoGMSMMi5CQpTgFm5NLrlqHp6WBUJmBuVZxlOQfhAOzvr44QEjjX8EbzwYK3sVvu5fsxJJ5H8gx&lang=es";
 
@@ -36,15 +35,6 @@ const Reservar = () => {
               transition={{ delay: 0.2 }}
               className="max-w-2xl mx-auto"
             >
-              {/* Ambient Image */}
-              <div className="mb-8 overflow-hidden rounded-lg border-2 border-border">
-                <img 
-                  src={restauranteAmbiente} 
-                  alt="Interior del restaurante Sorry But con iluminación neón púrpura" 
-                  className="w-full h-64 md:h-80 object-cover"
-                />
-              </div>
-
               {/* Reservation Card */}
               <div className="bg-card border-2 border-border p-8 md:p-12 text-center">
                 <div className="w-20 h-20 bg-primary/10 rounded-full flex items-center justify-center mx-auto mb-8">
@@ -75,13 +65,19 @@ const Reservar = () => {
 
               {/* Info Cards */}
               <div className="grid grid-cols-1 md:grid-cols-3 gap-4 mt-8">
-                <div className="bg-card border border-border p-6 text-center">
+                <a 
+                  href="https://maps.google.com/?q=Avenida+Montero+Rios+18,+36201+Vigo,+Spain" 
+                  target="_blank" 
+                  rel="noopener noreferrer"
+                  className="bg-card border border-border p-6 text-center block hover:border-primary transition-colors"
+                >
                   <MapPin size={24} className="text-primary mx-auto mb-3" />
                   <h3 className="text-display text-sm mb-2">UBICACIÓN</h3>
                   <p className="text-muted-foreground text-sm">
                     Av. Montero Ríos 18<br />36201 Vigo
                   </p>
-                </div>
+                  <p className="text-primary text-xs mt-2">Ver en Google Maps →</p>
+                </a>
                 
                 <div className="bg-card border border-border p-6 text-center">
                   <Clock size={24} className="text-secondary mx-auto mb-3" />
