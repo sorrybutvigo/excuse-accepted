@@ -2,6 +2,7 @@ import { motion } from "framer-motion";
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
 import { Calendar, MapPin, Clock, Phone, ArrowRight } from "lucide-react";
+import restauranteAmbiente from "@/assets/restaurante-ambiente.jpg";
 
 const REVO_FLOW_URL = "https://revoflow.works/widget/booking?widget_token=sY0PImoGMSMMi5CQpTgFm5NLrlqHp6WBUJmBuVZxlOQfhAOzvr44QEjjX8EbzwYK3sVvu5fsxJJ5H8gx&lang=es";
 
@@ -35,6 +36,15 @@ const Reservar = () => {
               transition={{ delay: 0.2 }}
               className="max-w-2xl mx-auto"
             >
+              {/* Ambient Image */}
+              <div className="mb-8 overflow-hidden rounded-lg border-2 border-border">
+                <img 
+                  src={restauranteAmbiente} 
+                  alt="Interior del restaurante Sorry But con iluminación neón púrpura" 
+                  className="w-full h-64 md:h-80 object-cover"
+                />
+              </div>
+
               {/* Reservation Card */}
               <div className="bg-card border-2 border-border p-8 md:p-12 text-center">
                 <div className="w-20 h-20 bg-primary/10 rounded-full flex items-center justify-center mx-auto mb-8">
@@ -77,7 +87,7 @@ const Reservar = () => {
                   <Clock size={24} className="text-secondary mx-auto mb-3" />
                   <h3 className="text-display text-sm mb-2">HORARIOS</h3>
                   <p className="text-muted-foreground text-sm">
-                    Brunch: 9:00 - 16:00<br />Burger: 13:00 - 23:30
+                    Cocina non-stop<br />9:00 - 1:00
                   </p>
                 </div>
                 
