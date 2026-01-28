@@ -49,7 +49,7 @@ import pechugaPolloPlancha from "@/assets/pechuga-pollo-plancha.png";
 import urbanSteak from "@/assets/urban-steak.png";
 import cachopo from "@/assets/cachopo.png";
 import salmonPlancha from "@/assets/salmon-plancha.png";
-import arrozIntegral from "@/assets/arroz-integral.png";
+
 import patatasBig from "@/assets/patatas-big.png";
 import patatasMedium from "@/assets/patatas-medium.png";
 import tartaPistacho from "@/assets/tarta-pistacho.png";
@@ -365,9 +365,8 @@ const menuData = {
     { id: 1, name: "SALMÓN PLANCHA", description: "Salmón a la plancha con parmentier de Boniato", price: "17,50€", image: salmonPlancha },
   ],
   burgerGuarniciones: [
-    { id: 1, name: "ARROZ INTEGRAL", description: "", price: "2,90€", image: arrozIntegral },
-    { id: 2, name: "PATATAS BIG", description: "", price: "4,90€", image: patatasBig },
-    { id: 3, name: "PATATAS MEDIUM", description: "", price: "2,90€", image: patatasMedium },
+    { id: 1, name: "PATATAS BIG", description: "", price: "4,90€", image: patatasBig },
+    { id: 2, name: "PATATAS MEDIUM", description: "", price: "2,90€", image: patatasMedium },
   ],
   brunchDulces: [
     { id: 1, name: "TARTA DE PISTACHO", description: "Tarta de queso y pistacho casera", price: "5,90€", image: tartaPistacho },
