@@ -14,6 +14,156 @@ export type Database = {
   }
   public: {
     Tables: {
+      order_items: {
+        Row: {
+          created_at: string
+          id: string
+          notes: string | null
+          order_id: string
+          product_id: string | null
+          product_name: string
+          quantity: number
+          total_price: number
+          unit_price: number
+        }
+        Insert: {
+          created_at?: string
+          id?: string
+          notes?: string | null
+          order_id: string
+          product_id?: string | null
+          product_name: string
+          quantity?: number
+          total_price: number
+          unit_price: number
+        }
+        Update: {
+          created_at?: string
+          id?: string
+          notes?: string | null
+          order_id?: string
+          product_id?: string | null
+          product_name?: string
+          quantity?: number
+          total_price?: number
+          unit_price?: number
+        }
+        Relationships: [
+          {
+            foreignKeyName: "order_items_order_id_fkey"
+            columns: ["order_id"]
+            isOneToOne: false
+            referencedRelation: "orders"
+            referencedColumns: ["id"]
+          },
+          {
+            foreignKeyName: "order_items_product_id_fkey"
+            columns: ["product_id"]
+            isOneToOne: false
+            referencedRelation: "products"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
+      orders: {
+        Row: {
+          created_at: string
+          customer_email: string
+          customer_name: string
+          customer_phone: string
+          delivery_address: string
+          delivery_fee: number
+          delivery_lat: number | null
+          delivery_lng: number | null
+          delivery_notes: string | null
+          estimated_delivery_time: number | null
+          id: string
+          payment_intent_id: string | null
+          payment_status: string | null
+          status: Database["public"]["Enums"]["order_status"]
+          subtotal: number
+          total: number
+          updated_at: string
+          user_id: string | null
+        }
+        Insert: {
+          created_at?: string
+          customer_email: string
+          customer_name: string
+          customer_phone: string
+          delivery_address: string
+          delivery_fee?: number
+          delivery_lat?: number | null
+          delivery_lng?: number | null
+          delivery_notes?: string | null
+          estimated_delivery_time?: number | null
+          id?: string
+          payment_intent_id?: string | null
+          payment_status?: string | null
+          status?: Database["public"]["Enums"]["order_status"]
+          subtotal: number
+          total: number
+          updated_at?: string
+          user_id?: string | null
+        }
+        Update: {
+          created_at?: string
+          customer_email?: string
+          customer_name?: string
+          customer_phone?: string
+          delivery_address?: string
+          delivery_fee?: number
+          delivery_lat?: number | null
+          delivery_lng?: number | null
+          delivery_notes?: string | null
+          estimated_delivery_time?: number | null
+          id?: string
+          payment_intent_id?: string | null
+          payment_status?: string | null
+          status?: Database["public"]["Enums"]["order_status"]
+          subtotal?: number
+          total?: number
+          updated_at?: string
+          user_id?: string | null
+        }
+        Relationships: []
+      }
+      products: {
+        Row: {
+          categoria: string
+          created_at: string
+          descripcion: string | null
+          disponible: boolean
+          id: string
+          imagen_url: string | null
+          nombre: string
+          precio: number
+          subcategoria: string
+        }
+        Insert: {
+          categoria: string
+          created_at?: string
+          descripcion?: string | null
+          disponible?: boolean
+          id?: string
+          imagen_url?: string | null
+          nombre: string
+          precio: number
+          subcategoria: string
+        }
+        Update: {
+          categoria?: string
+          created_at?: string
+          descripcion?: string | null
+          disponible?: boolean
+          id?: string
+          imagen_url?: string | null
+          nombre?: string
+          precio?: number
+          subcategoria?: string
+        }
+        Relationships: []
+      }
       reservations: {
         Row: {
           created_at: string
@@ -67,7 +217,12 @@ export type Database = {
       [_ in never]: never
     }
     Enums: {
-      [_ in never]: never
+      order_status:
+        | "pending"
+        | "preparing"
+        | "out_for_delivery"
+        | "delivered"
+        | "cancelled"
     }
     CompositeTypes: {
       [_ in never]: never
@@ -194,6 +349,14 @@ export type CompositeTypes<
 
 export const Constants = {
   public: {
-    Enums: {},
+    Enums: {
+      order_status: [
+        "pending",
+        "preparing",
+        "out_for_delivery",
+        "delivered",
+        "cancelled",
+      ],
+    },
   },
 } as const
