@@ -43,6 +43,7 @@ import patatasQuesoTrufadoBacon from "@/assets/patatas-queso-trufado-bacon.png";
 import tequenosTartara from "@/assets/tequenos-tartara.png";
 import fingersPollo from "@/assets/fingers-pollo.png";
 import aguacatePoche from "@/assets/aguacate-poche.png";
+import croquetasChipirones from "@/assets/croquetas-chipirones.png";
 import ensaladaSalmonRuloCabra from "@/assets/ensalada-salmon-rulo-cabra.png";
 import ensaladaCesar from "@/assets/ensalada-cesar.png";
 import pechugaPolloPlancha from "@/assets/pechuga-pollo-plancha.png";
@@ -338,6 +339,13 @@ const menuData = {
       description: "Aguacate con huevo poché y bacon crujiente bañado en salsa holandesa",
       price: "8,90€",
       image: aguacatePoche,
+    },
+    {
+      id: 12,
+      name: "CROQUETAS DE CHIPIRONES CASERAS",
+      description: "Croquetas caseras de chipirones (6 uds)",
+      price: "9,90€",
+      image: croquetasChipirones,
     },
   ],
   burgerEnsaladas: [
