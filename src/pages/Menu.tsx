@@ -343,7 +343,7 @@ const menuData = {
     {
       id: 12,
       name: "CROQUETAS DE CHIPIRONES CASERAS",
-      description: "Croquetas caseras de chipirones (6 uds)",
+      description: "Croquetas caseras de chipirones",
       price: "9,90€",
       image: croquetasChipirones,
     },
